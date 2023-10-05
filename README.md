@@ -4,6 +4,8 @@
 
 Visual Studio Code에서 Docker container를 띄워 관리할 수 있도록 구성해두기는 했지만, 데이터와 ga4_dashboard.py 파일만 다운 받아 본인의 파이썬 환경에서 실행하셔도 무방합니다.
 
+![ga4-dashboard](https://github.com/ycseong07/streamlit-dashboard-GA4/assets/48194852/52abd8f8-f43b-428e-b73a-909a09a6876f)
+
 ## VSCode, Docker를 이용해 열기
 - Visual Studio Code, Docker
 
