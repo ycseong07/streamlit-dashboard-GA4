@@ -14,6 +14,7 @@ Visual Studio Code에서 Docker container를 띄워 관리할 수 있도록 구�
 3. Cmd(Control) + Shift + p -> `Dev Containers: Open Folder in Container...` 를 선택합니다.
 4. 클론받은 폴더를 선택해주세요
 5. 컨테이너를 재시작하고 싶을 경우 `Dev Containers: Reopen in containers` 를 선택합니다.
+6. `streamlit run ga4_dashboard.py` 명령어를 입력합니다.
 
 ## 참고
 Mac, Linux에서 작업하실 경우 본 레포를 그대로 클론받아 쓰셔도 되지만, Windows의 경우 .streamlit 폴더를 `%userprofile%/.streamlit/` 처럼 위치시켜주셔야 합니다. ([관련링크](https://docs.streamlit.io/library/advanced-features/configuration#set-configuration-options))
