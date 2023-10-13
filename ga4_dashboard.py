@@ -55,7 +55,8 @@ def main():
         )
     
     # 제목
-    st.title("매출 대시보드") 
+    st.title("Google Merchandise Store 대시보드", anchor = None) 
+    st.caption("21년 1월 매출 기준")
     col1, col2, col3, col4 = st.columns(4)
 
     # 총 매출 계산 (12월 vs 1월)
@@ -66,10 +67,10 @@ def main():
     dec_AOV = dec_df.groupby('user_pseudo_id')['item_revenue_in_usd'].mean().mean()
     jan_AOV = jan_df.groupby('user_pseudo_id')['item_revenue_in_usd'].mean().mean()
 
-    # 신규 고객 수 계산 (11, 12월 vs 1월)
+    # 신규 고객 수 (11, 12월 vs 1월)
     new_customers = len(set(jan_df['user_pseudo_id']) - set(nov_df['user_pseudo_id']) - set(dec_df['user_pseudo_id']))
 
-    # 이탈 고객 수 계산 (11, 12월 vs 1월)
+    # 1월 미구매 고객 수 (11월 혹은 12월에는 구매했지만, 1월에는 구매하지 않은 고객)
     churned_customers = len((set(nov_df['user_pseudo_id']) | set(dec_df['user_pseudo_id'])) - set(jan_df['user_pseudo_id']))
 
     # 각 지표에 대한 증가, 감소 비율 계산
@@ -84,7 +85,7 @@ def main():
     col1.metric("총 매출", f'$ {round(jan_revenue, 1)}', f'{calculate_percentage_change(jan_revenue, dec_revenue)}') 
     col2.metric("평균 주문 가치 (AOV)", (f'$ {round(jan_AOV,1)}'), calculate_percentage_change(jan_AOV, dec_AOV)) 
     col3.metric("신규 고객 수", f'{new_customers} 명')
-    col4.metric("이탈 고객 수", f'{churned_customers} 명')
+    col4.metric("1월 미구매 고객 수", f'{churned_customers} 명')
 
     st.divider()
 
@@ -152,7 +153,7 @@ def main():
         .properties(height=240)
     )
 
-    top_items_chart = alt.vconcat(chart_top10, data=df_top10, title="") # 이런 식으로 차트와 데이터를 합칠 수도 있습니다
+    top_items_chart = alt.vconcat(chart_top10, data=df_top10, title="") # Altair 라이브러리 사용: 이런 식으로 차트와 데이터를 합쳐줄 수도 있습니다
     col2.subheader("인기상품 Top 10")
     col2.altair_chart(top_items_chart, theme="streamlit", use_container_width=True)
     
